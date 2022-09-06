@@ -27,8 +27,7 @@ jobs:
         working-directory: BlazorWebSandbox
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-        arguments: '--configuration Release -r linux-x64 --self-contained true --use-current-runtime'
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp --self-contained true --use-current-runtime
         working-directory: BlazorWebSandbox
 
       - name: Upload artifact for deployment job
