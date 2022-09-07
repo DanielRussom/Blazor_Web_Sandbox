@@ -4,10 +4,25 @@
 
 @code {
     [TestMethod]
+	public void Show_calculator_header()
+	{
+		var cut = Render(@<Calculator/>);
+
+		cut.Find("h1").MarkupMatches(@<h1>Calculator</h1>);
+	}
+
+    [TestMethod]
 	public void Show_0_in_display()
 	{
 		var cut = Render(@<Calculator/>);
 
-		cut.Find("p").MarkupMatches(@<p>0</p>);
+		cut.Find("p").MarkupMatches(@<p id="DisplayValue">0</p>);
+	}
+
+    [TestMethod]
+	public void Show_a_button_for_number_1()
+	{
+		var cut = Render(@<Calculator/>);
+		cut.Find("Button").MarkupMatches(@<button>1</button>);
 	}
 }
