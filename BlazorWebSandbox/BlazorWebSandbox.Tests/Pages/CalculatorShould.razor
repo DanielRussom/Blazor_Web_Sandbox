@@ -1,0 +1,13 @@
+@using BlazorWebSandbox.Pages
+@attribute [TestClass]
+@inherits BunitTestContext
+
+@code {
+    [TestMethod]
+	public void Show_0_in_display()
+	{
+		var cut = Render(@<Calculator/>);
+
+		cut.Find("p").MarkupMatches(@<p>0</p>);
+	}
+}

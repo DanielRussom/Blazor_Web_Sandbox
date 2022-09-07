@@ -29,6 +29,6 @@ public class CounterCSharpTests : BunitTestContext
 		cut.Find("button").Click();
 
 		// Assert that the counter was incremented
-		cut.Find("p role=\"status\"").MarkupMatches(" <p role=\"status\">Current count: 1</p>");
+		cut.Find("p").MarkupMatches(" <p role=\"status\">Current count: 1</p>");
 	}
 }
