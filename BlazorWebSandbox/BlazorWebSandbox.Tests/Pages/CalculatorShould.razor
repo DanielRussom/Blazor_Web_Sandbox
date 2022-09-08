@@ -30,6 +30,16 @@
 	}
 
     [TestMethod]
+	public void Show_a_button_for_number_2()
+	{
+		var cut = Render(@<Calculator/>);
+
+		var buttonValue = cut.Find("button#two").InnerHtml;
+
+		Assert.AreEqual("2", buttonValue);
+	}
+
+    [TestMethod]
 	public void Show_a_button_for_plus_symbol()
 	{
 		var cut = Render(@<Calculator/>);
@@ -52,8 +62,6 @@
 
 		cut.Find("p#displayValue").MarkupMatches(@<p id="displayValue">1</p>);
 	}
-
-	
 
     [TestMethod]
 	public void Set_display_to_11()
