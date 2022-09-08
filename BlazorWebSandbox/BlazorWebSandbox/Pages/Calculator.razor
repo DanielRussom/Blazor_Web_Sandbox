@@ -6,7 +6,7 @@
 <p id="displayValue">@displayValue</p>
 
 <button id="one" @onclick="SelectOne">1</button>
-<button id="two">2</button>
+<button id="two" @onclick="SelectTwo">2</button>
 <button id="plus">+</button>
 <button id="equals">=</button>
 
@@ -22,5 +22,10 @@
         }
 
         displayValue += "1";
+    }
+
+    private void SelectTwo()
+    {
+        displayValue = "2";
     }
 }
