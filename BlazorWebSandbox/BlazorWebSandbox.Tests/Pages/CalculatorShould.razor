@@ -39,6 +39,16 @@
 		Assert.AreEqual("2", buttonValue);
 	}
 
+	[TestMethod]
+	public void Show_a_button_for_number_3()
+	{
+		var cut = Render(@<Calculator />);
+
+		var buttonValue = cut.Find("button#three").InnerHtml;
+
+		Assert.AreEqual("3", buttonValue);
+	}
+
     [TestMethod]
 	public void Show_a_button_for_plus_symbol()
 	{
