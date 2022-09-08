@@ -6,9 +6,9 @@
     [TestMethod]
 	public void Show_calculator_header()
 	{
-		var cut = Render(@<Calculator/>);
+		var underTest = Render(@<Calculator/>);
 
-		cut.Find("h1").MarkupMatches(@<h1>Calculator</h1>);
+		underTest.Find("h1").MarkupMatches(@<h1>Calculator</h1>);
 	}
 
     [TestMethod]
@@ -24,5 +24,12 @@
 	{
 		var cut = Render(@<Calculator/>);
 		cut.Find("Button").MarkupMatches(@<button>1</button>);
+	}
+
+    [TestMethod]
+	public void Show_a_button_for_plus_symbol()
+	{
+		var cut = Render(@<Calculator/>);
+		cut.Find("button#plus").MarkupMatches(@<button id="plus">+</button>);
 	}
 }
