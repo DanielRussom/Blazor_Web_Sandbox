@@ -3,10 +3,18 @@
 
 <h1>Calculator</h1>
 
+<p id="displayValue">@displayValue</p>
 
-
-<p id="DisplayValue">0</p>
-
-<button>1</button>
+<button id="one" @onclick="SelectOne">1</button>
 <button id="plus">+</button>
-<button id="equals">=</button>)
+<button id="equals">=</button>
+
+
+@code {
+    private int displayValue = 0;
+
+    private void SelectOne()
+    {
+        displayValue = 1;
+    }
+}

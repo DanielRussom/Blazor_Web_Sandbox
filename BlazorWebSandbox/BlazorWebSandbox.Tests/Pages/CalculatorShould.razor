@@ -16,14 +16,17 @@
 	{
 		var cut = Render(@<Calculator/>);
 
-		cut.Find("p").MarkupMatches(@<p id="DisplayValue">0</p>);
+		cut.Find("p#displayValue").MarkupMatches(@<p id="displayValue">0</p>);
 	}
 
     [TestMethod]
 	public void Show_a_button_for_number_1()
 	{
 		var cut = Render(@<Calculator/>);
-		cut.Find("Button").MarkupMatches(@<button>1</button>);
+
+		var buttonValue = cut.Find("button#one").InnerHtml;
+
+		Assert.AreEqual("1", buttonValue);
 	}
 
     [TestMethod]
@@ -38,5 +41,15 @@
 	{
 		var cut = Render(@<Calculator/>);
 		cut.Find("button#equals").MarkupMatches(@<button id="equals">=</button>);
+	}
+
+    [TestMethod]
+	public void Set_display_to_1()
+	{
+		var cut = Render(@<Calculator/>);
+
+		cut.Find("button#one").Click();
+
+		cut.Find("p#displayValue").MarkupMatches(@<p id="displayValue">1</p>);
 	}
 }
