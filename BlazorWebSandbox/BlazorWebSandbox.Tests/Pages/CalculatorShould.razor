@@ -3,104 +3,59 @@
 @inherits BunitTestContext
 
 @code {
+	IRenderedFragment UnderTest;
+
+	[TestInitialize]
+	public void Initialize()
+	{
+		UnderTest = Render(@<Calculator />);
+	}
+
     [TestMethod]
 	public void Show_calculator_header()
 	{
-		var underTest = Render(@<Calculator/>);
-
-		underTest.Find("h1").MarkupMatches(@<h1>Calculator</h1>);
+		UnderTest.Find("h1").MarkupMatches(@<h1>Calculator</h1>);
 	}
 
     [TestMethod]
 	public void Show_0_in_display()
 	{
-		var cut = Render(@<Calculator/>);
-
-		cut.Find("p#displayValue").MarkupMatches(@<p id="displayValue">0</p>);
+		UnderTest.Find("p#displayValue").MarkupMatches(@<p id="displayValue">0</p>);
 	}
 
     [TestMethod]
-	public void Show_a_button_for_number_1()
+	[DataRow("one", "1")]
+	[DataRow("two", "2")]
+	[DataRow("three", "3")]
+	// Consider splitting into seperate test
+	[DataRow("plus", "+")]
+	[DataRow("equals", "=")]
+	public void Show_a_button_for_expected_value(string elementId, string expected)
 	{
-		var cut = Render(@<Calculator/>);
+		var buttonValue = UnderTest.Find($"button#{elementId}").InnerHtml;
 
-		var buttonValue = cut.Find("button#one").InnerHtml;
-
-		Assert.AreEqual("1", buttonValue);
-	}
-
-    [TestMethod]
-	public void Show_a_button_for_number_2()
-	{
-		var cut = Render(@<Calculator/>);
-
-		var buttonValue = cut.Find("button#two").InnerHtml;
-
-		Assert.AreEqual("2", buttonValue);
+		Assert.AreEqual(expected, buttonValue);
 	}
 
 	[TestMethod]
-	public void Show_a_button_for_number_3()
+	[DataRow("one", "1")]
+	[DataRow("two", "2")]
+	[DataRow("three", "3")]
+	public void Set_display_to_expected(string elementId, string expected)
 	{
-		var cut = Render(@<Calculator />);
+		UnderTest.Find($"button#{elementId}").Click();
 
-		var buttonValue = cut.Find("button#three").InnerHtml;
+		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
 
-		Assert.AreEqual("3", buttonValue);
+		Assert.AreEqual(expected, displayValue);
 	}
 
-    [TestMethod]
-	public void Show_a_button_for_plus_symbol()
-	{
-		var cut = Render(@<Calculator/>);
-		cut.Find("button#plus").MarkupMatches(@<button id="plus">+</button>);
-	}
-
-    [TestMethod]
-	public void Show_a_button_for_equals_symbol()
-	{
-		var cut = Render(@<Calculator/>);
-		cut.Find("button#equals").MarkupMatches(@<button id="equals">=</button>);
-	}
-
-    [TestMethod]
-	public void Set_display_to_1()
-	{
-		var cut = Render(@<Calculator/>);
-
-		cut.Find("button#one").Click();
-
-		cut.Find("p#displayValue").MarkupMatches(@<p id="displayValue">1</p>);
-	}
-
-    [TestMethod]
+	[TestMethod]
 	public void Set_display_to_11()
 	{
-		var cut = Render(@<Calculator/>);
+		UnderTest.Find("button#one").Click();
+		UnderTest.Find("button#one").Click();
 
-		cut.Find("button#one").Click();
-		cut.Find("button#one").Click();
-
-		cut.Find("p#displayValue").MarkupMatches(@<p id="displayValue">11</p>);
-	}
-
-    [TestMethod]
-	public void Set_display_to_2()
-	{
-		var cut = Render(@<Calculator/>);
-
-		cut.Find("button#two").Click();
-
-		cut.Find("p#displayValue").MarkupMatches(@<p id="displayValue">2</p>);
-	}
-
-	[TestMethod]
-	public void Set_display_to_3()
-	{
-		var cut = Render(@<Calculator />);
-
-		cut.Find("button#three").Click();
-
-		cut.Find("p#displayValue").MarkupMatches(@<p id="displayValue">3</p>);
+		UnderTest.Find("p#displayValue").MarkupMatches(@<p id="displayValue">11</p>);
 	}
 }
