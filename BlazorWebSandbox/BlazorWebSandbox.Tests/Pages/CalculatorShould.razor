@@ -32,4 +32,11 @@
 		var cut = Render(@<Calculator/>);
 		cut.Find("button#plus").MarkupMatches(@<button id="plus">+</button>);
 	}
+
+    [TestMethod]
+	public void Show_a_button_for_equals_symbol()
+	{
+		var cut = Render(@<Calculator/>);
+		cut.Find("button#equals").MarkupMatches(@<button id="equals">=</button>);
+	}
 }
