@@ -11,10 +11,15 @@
 
 
 @code {
-    private int displayValue = 0;
+    private string displayValue = "0";
 
     private void SelectOne()
     {
-        displayValue = 1;
+        if(displayValue.Equals("0")){
+            displayValue = "1";
+            return;
+        }
+
+        displayValue += "1";
     }
 }

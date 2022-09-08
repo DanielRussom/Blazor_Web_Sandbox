@@ -52,4 +52,17 @@
 
 		cut.Find("p#displayValue").MarkupMatches(@<p id="displayValue">1</p>);
 	}
+
+	
+
+    [TestMethod]
+	public void Set_display_to_11()
+	{
+		var cut = Render(@<Calculator/>);
+
+		cut.Find("button#one").Click();
+		cut.Find("button#one").Click();
+
+		cut.Find("p#displayValue").MarkupMatches(@<p id="displayValue">11</p>);
+	}
 }
