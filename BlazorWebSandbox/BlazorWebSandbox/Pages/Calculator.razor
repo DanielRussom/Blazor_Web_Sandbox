@@ -3,7 +3,7 @@
 
 <h1>Calculator</h1>
 
-<p id="displayValue">@displayValue</p>
+<p id="displayValue">@displayValue.ToString()</p>
 
 <button id="one" @onclick="@(()=>SelectNumber(1))">1</button>
 <button id="two" @onclick="@(()=>SelectNumber(2))">2</button>
@@ -14,24 +14,28 @@
 
 
 @code {
-    private string displayValue = "0";
+    private int displayValue = 0;
+    private int storedValue = 0;
 
     private void SelectNumber(int number)
     {
-        if(displayValue.Equals("0")){
-            displayValue = number.ToString();
+        if(displayValue.Equals(0)){
+            displayValue = number;
             return;
         }
 
-        displayValue += number.ToString();
+        displayValue = int.Parse($"{displayValue}{number}");
     }
 
     private void PlusCommand()
     {
-        displayValue = "0";
+        storedValue += displayValue;
+        displayValue = 0;
     }
 
     private void EqualsCommand()
     {
+        storedValue += displayValue;
+        displayValue = storedValue;
     }
 }
