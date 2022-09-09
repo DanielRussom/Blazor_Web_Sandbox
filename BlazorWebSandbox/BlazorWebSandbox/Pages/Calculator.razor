@@ -10,7 +10,7 @@
 <button id="three" @onclick="@(()=>SelectNumber(3))">3</button>
 <button id="four" @onclick="@(()=>SelectNumber(4))">4</button>
 <button id="plus" @onclick="PlusCommand">+</button>
-<button id="equals">=</button>
+<button id="equals" @onclick="EqualsCommand">=</button>
 
 
 @code {
@@ -29,5 +29,9 @@
     private void PlusCommand()
     {
         displayValue = "0";
+    }
+
+    private void EqualsCommand()
+    {
     }
 }

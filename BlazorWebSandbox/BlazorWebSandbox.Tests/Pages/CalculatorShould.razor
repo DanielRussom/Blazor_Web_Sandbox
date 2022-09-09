@@ -76,4 +76,14 @@
 
 		UnderTest.Find("p#displayValue").MarkupMatches(@<p id="displayValue">0</p>);
 	}
+
+	[TestMethod]
+	public void Display_the_same_value_after_clicking_equals()
+	{
+		UnderTest.Find($"button#one").Click();
+
+		UnderTest.Find($"button#equals").Click();
+
+		UnderTest.Find("p#displayValue").MarkupMatches(@<p id="displayValue">1</p>);
+	}
 }
