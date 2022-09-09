@@ -27,6 +27,7 @@
 	[DataRow("one", "1")]
 	[DataRow("two", "2")]
 	[DataRow("three", "3")]
+	[DataRow("four", "4")]
 	public void Show_a_button_for_expected_number(string elementId, string expected)
 	{
 		var buttonValue = UnderTest.Find($"button#{elementId}").InnerHtml;
