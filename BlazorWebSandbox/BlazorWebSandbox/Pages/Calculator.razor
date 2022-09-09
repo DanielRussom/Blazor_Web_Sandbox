@@ -5,9 +5,9 @@
 
 <p id="displayValue">@displayValue</p>
 
-<button id="one" @onclick="SelectOne">1</button>
-<button id="two" @onclick="SelectTwo">2</button>
-<button id="three" @onclick="SelectThree">3</button>
+<button id="one" @onclick="@(()=>SelectNumber(1))">1</button>
+<button id="two" @onclick="@(()=>SelectNumber(2))">2</button>
+<button id="three" @onclick="@(()=>SelectNumber(3))">3</button>
 <button id="plus">+</button>
 <button id="equals">=</button>
 
@@ -15,23 +15,13 @@
 @code {
     private string displayValue = "0";
 
-    private void SelectOne()
+    private void SelectNumber(int number)
     {
         if(displayValue.Equals("0")){
-            displayValue = "1";
+            displayValue = number.ToString();
             return;
         }
 
-        displayValue += "1";
-    }
-
-    private void SelectTwo()
-    {
-        displayValue = "2";
-    }
-
-    private void SelectThree()
-    {
-        displayValue = "3";
+        displayValue += number.ToString();
     }
 }
