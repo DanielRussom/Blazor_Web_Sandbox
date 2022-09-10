@@ -51,6 +51,8 @@
 	[DataRow("two", "2")]
 	[DataRow("three", "3")]
 	[DataRow("four", "4")]
+	[DataRow("five", "5")]
+	[DataRow("six", "6")]
 	public void Set_display_to_expected(string elementId, string expected)
 	{
 		UnderTest.Find($"button#{elementId}").Click();
