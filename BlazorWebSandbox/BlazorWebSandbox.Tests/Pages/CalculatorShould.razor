@@ -30,6 +30,10 @@
 	[DataRow("four", "4")]
 	[DataRow("five", "5")]
 	[DataRow("six", "6")]
+	[DataRow("seven", "7")]
+	[DataRow("eight", "8")]
+	[DataRow("nine", "9")]
+	[DataRow("zero", "0")]
 	public void Show_a_button_for_expected_number(string elementId, string expected)
 	{
 		var buttonValue = UnderTest.Find($"button#{elementId}").InnerHtml;
@@ -53,6 +57,10 @@
 	[DataRow("four", "4")]
 	[DataRow("five", "5")]
 	[DataRow("six", "6")]
+	[DataRow("seven", "7")]
+	[DataRow("eight", "8")]
+	[DataRow("nine", "9")]
+	[DataRow("zero", "0")]
 	public void Set_display_to_expected(string elementId, string expected)
 	{
 		UnderTest.Find($"button#{elementId}").Click();
