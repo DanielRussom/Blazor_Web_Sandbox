@@ -24,16 +24,17 @@
 	public void Show_calculator_header()
 	{
 		UnderTest.Find("h1").MarkupMatches(
-	@<h1>Calculator</h1>);
+	@<h1>Calculator</h1>
+	);
 	}
 
-    [TestMethod]
+	[TestMethod]
 	public void Show_0_in_display()
 	{
 		Assert.AreEqual("0", GetDisplayValue());
 	}
 
-    [TestMethod]
+	[TestMethod]
 	[DataRow("one", "1")]
 	[DataRow("two", "2")]
 	[DataRow("three", "3")]
@@ -50,8 +51,8 @@
 
 		Assert.AreEqual(expected, buttonValue);
 	}
-	
-    [TestMethod]
+
+	[TestMethod]
 	[DataRow("plus", "+")]
 	[DataRow("equals", "=")]
 	[DataRow("minus", "-")]
@@ -77,7 +78,7 @@
 	public void Set_display_to_expected(string elementId, string expected)
 	{
 		GetButton(elementId).Click();
-		
+
 		Assert.AreEqual(expected, GetDisplayValue());
 	}
 
@@ -87,7 +88,7 @@
 		var buttonOne = GetButton("one");
 		buttonOne.Click();
 		buttonOne.Click();
-		
+
 		Assert.AreEqual("11", GetDisplayValue());
 	}
 
@@ -97,7 +98,7 @@
 		GetButton("one").Click();
 
 		GetButton("plus").Click();
-		
+
 		Assert.AreEqual("0", GetDisplayValue());
 	}
 
@@ -107,7 +108,7 @@
 		GetButton("one").Click();
 
 		GetButton("equals").Click();
-		
+
 		Assert.AreEqual("1", GetDisplayValue());
 	}
 
@@ -120,7 +121,7 @@
 		GetButton("plus").Click();
 		buttonOne.Click();
 		GetButton("equals").Click();
-		
+
 		Assert.AreEqual("2", GetDisplayValue());
 	}
 
@@ -135,7 +136,7 @@
 		plusButton.Click();
 		GetButton("three").Click();
 		GetButton("equals").Click();
-		
+
 		Assert.AreEqual("6", GetDisplayValue());
 	}
 
@@ -143,13 +144,13 @@
 	public void Display_one_when_one_is_clicked_after_the_equals_command()
 	{
 		var buttonOne = GetButton("one");
-		
+
 		buttonOne.Click();
 		GetButton("plus").Click();
 		GetButton("two").Click();
 		GetButton("equals").Click();
 		buttonOne.Click();
-		
+
 		Assert.AreEqual("1", GetDisplayValue());
 	}
 
@@ -158,16 +159,36 @@
 	{
 		var plusButton = GetButton("plus");
 		var equalsButton = GetButton("equals");
-		
+
 		GetButton("one").Click();
 		plusButton.Click();
 		GetButton("two").Click();
 		equalsButton.Click();
-		
+
 		plusButton.Click();
 		GetButton("three").Click();
 		equalsButton.Click();
-		
+
 		Assert.AreEqual("6", GetDisplayValue());
 	}
+
+	[TestMethod]
+	public void Perform_last_operation_when_equals_is_pressed_twice()
+	{
+		var buttonOne = GetButton("one");
+		var buttonTwo = GetButton("two");
+		var plusButton = GetButton("plus");
+		var equalsButton = GetButton("equals");
+
+		buttonOne.Click();
+		plusButton.Click();
+		buttonTwo.Click();
+		equalsButton.Click();
+
+		equalsButton.Click();
+		
+		Assert.AreEqual("5", GetDisplayValue());
+	}
+
+	
 }

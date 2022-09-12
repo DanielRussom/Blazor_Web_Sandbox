@@ -43,14 +43,26 @@
         {
             storedValue += displayValue;
         }
+        else
+        {
+            storedValue = displayValue;
+        }
+
 
         displayValue = 0;
     }
 
     private void EqualsCommand()
     {
-        storedValue += displayValue;
-        displayValue = storedValue;
-        wasEqualsTheLastCommand = true;
+        if (!wasEqualsTheLastCommand)
+        {
+            var tempValue = displayValue;
+            displayValue += storedValue;
+            storedValue = tempValue;
+            wasEqualsTheLastCommand = true;
+            return;
+        }
+
+        displayValue += storedValue;
     }
 }
