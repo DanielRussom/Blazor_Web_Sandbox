@@ -1,26 +1,37 @@
 @page "/calculator"
 @inject HttpClient Http
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: max-content max-content max-content;
+}
+.grid-item {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  text-align: center;
+  margin:2px;
+}
+</style>
 
 <h1>Calculator</h1>
 
 <p id="displayValue">@displayValue.ToString()</p>
 
-<button id="one" @onclick="@(()=>SelectNumber(1))">1</button>
-
-<button id="two" @onclick="@(()=>SelectNumber(2))">2</button>
-<button id="three" @onclick="@(()=>SelectNumber(3))">3</button>
-<button id="four" @onclick="@(()=>SelectNumber(4))">4</button>
-<button id="five" @onclick="@(()=>SelectNumber(5))">5</button>
-<button id="six" @onclick="@(()=>SelectNumber(6))">6</button>
-<button id="seven" @onclick="@(()=>SelectNumber(7))">7</button>
-<button id="eight" @onclick="@(()=>SelectNumber(8))">8</button>
-<button id="nine" @onclick="@(()=>SelectNumber(9))">9</button>
-<button id="zero" @onclick="@(()=>SelectNumber(0))">0</button>
-<button id="plus" @onclick="PlusCommand">+</button>
-<button id="minus">-</button>
-<button id="equals" @onclick="EqualsCommand">=</button>
-<button id="clear">C</button>
-
+<div class="grid-container">
+    <button class="grid-item" id="one" @onclick="@(()=>SelectNumber(1))">1</button>
+    <button class="grid-item" id="two" @onclick="@(()=>SelectNumber(2))">2</button>
+    <button class="grid-item" id="three" @onclick="@(()=>SelectNumber(3))">3</button>
+    <button class="grid-item" id="four" @onclick="@(()=>SelectNumber(4))">4</button>
+    <button class="grid-item" id="five" @onclick="@(()=>SelectNumber(5))">5</button>
+    <button class="grid-item" id="six" @onclick="@(()=>SelectNumber(6))">6</button>
+    <button class="grid-item" id="seven" @onclick="@(()=>SelectNumber(7))">7</button>
+    <button class="grid-item" id="eight" @onclick="@(()=>SelectNumber(8))">8</button>
+    <button class="grid-item" id="nine" @onclick="@(()=>SelectNumber(9))">9</button>
+    <button class="grid-item" id="zero" @onclick="@(()=>SelectNumber(0))">0</button>
+    <button class="grid-item" id="plus" @onclick="PlusCommand">+</button>
+    <button class="grid-item" id="minus">-</button>
+    <button class="grid-item" id="equals" @onclick="EqualsCommand">=</button>
+    <button class="grid-item" id="clear">C</button>
+</div>
 
 @code {
     private int displayValue = 0;
