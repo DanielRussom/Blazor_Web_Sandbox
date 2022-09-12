@@ -24,11 +24,13 @@
 @code {
     private int displayValue = 0;
     private int storedValue = 0;
+    private bool wasEqualsTheLastCommand = false;
 
     private void SelectNumber(int number)
     {
-        if(displayValue.Equals(0)){
+        if(wasEqualsTheLastCommand || displayValue.Equals(0)){
             displayValue = number;
+            wasEqualsTheLastCommand = false;
             return;
         }
 
@@ -45,5 +47,6 @@
     {
         storedValue += displayValue;
         displayValue = storedValue;
+        wasEqualsTheLastCommand = true;
     }
 }

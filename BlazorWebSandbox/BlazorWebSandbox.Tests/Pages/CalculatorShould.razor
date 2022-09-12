@@ -128,4 +128,18 @@
 		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
 		Assert.AreEqual("6", displayValue);
 	}
+
+	[TestMethod]
+	public void Display_one_when_one_is_clicked_after_the_equals_command()
+	{
+		UnderTest.Find($"button#one").Click();
+		UnderTest.Find($"button#plus").Click();
+		UnderTest.Find($"button#two").Click();
+		UnderTest.Find($"button#equals").Click();
+
+		UnderTest.Find($"button#one").Click();
+		
+		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
+		Assert.AreEqual("1", displayValue);
+	}
 }
