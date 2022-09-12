@@ -4,29 +4,33 @@
 @inherits BunitTestContext
 
 @code {
-    IRenderedFragment UnderTest;
+	IRenderedFragment UnderTest;
 
-    [TestInitialize]
-    public void Initialize()
-    {
-		UnderTest = Render(@<Calculator />
-	);
+	[TestInitialize]
+	public void Initialize()
+	{
+		UnderTest = Render(@<Calculator />);
 	}
 
 	private IElement GetButton(string elementId){
 		return UnderTest.Find($"button#{elementId}");
 	}
 
+	private string GetDisplayValue(){
+		return UnderTest.Find("p#displayValue").InnerHtml;
+	}
+
     [TestMethod]
 	public void Show_calculator_header()
 	{
-		UnderTest.Find("h1").MarkupMatches(@<h1>Calculator</h1>);
+		UnderTest.Find("h1").MarkupMatches(
+	@<h1>Calculator</h1>);
 	}
 
     [TestMethod]
 	public void Show_0_in_display()
 	{
-		UnderTest.Find("p#displayValue").MarkupMatches(@<p id="displayValue">0</p>);
+		Assert.AreEqual("0", GetDisplayValue());
 	}
 
     [TestMethod]
@@ -73,10 +77,8 @@
 	public void Set_display_to_expected(string elementId, string expected)
 	{
 		GetButton(elementId).Click();
-
-		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
-
-		Assert.AreEqual(expected, displayValue);
+		
+		Assert.AreEqual(expected, GetDisplayValue());
 	}
 
 	[TestMethod]
@@ -85,8 +87,8 @@
 		var buttonOne = GetButton("one");
 		buttonOne.Click();
 		buttonOne.Click();
-
-		UnderTest.Find("p#displayValue").MarkupMatches(@<p id="displayValue">11</p>);
+		
+		Assert.AreEqual("11", GetDisplayValue());
 	}
 
 	[TestMethod]
@@ -95,9 +97,8 @@
 		GetButton("one").Click();
 
 		GetButton("plus").Click();
-
-		UnderTest.Find("p#displayValue").MarkupMatches(@<p id="displayValue">0</p>
-	);
+		
+		Assert.AreEqual("0", GetDisplayValue());
 	}
 
 	[TestMethod]
@@ -106,9 +107,8 @@
 		GetButton("one").Click();
 
 		GetButton("equals").Click();
-
-		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
-		Assert.AreEqual("1", displayValue);
+		
+		Assert.AreEqual("1", GetDisplayValue());
 	}
 
 	[TestMethod]
@@ -120,9 +120,8 @@
 		GetButton("plus").Click();
 		buttonOne.Click();
 		GetButton("equals").Click();
-
-		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
-		Assert.AreEqual("2", displayValue);
+		
+		Assert.AreEqual("2", GetDisplayValue());
 	}
 
 	[TestMethod]
@@ -137,8 +136,7 @@
 		GetButton("three").Click();
 		GetButton("equals").Click();
 		
-		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
-		Assert.AreEqual("6", displayValue);
+		Assert.AreEqual("6", GetDisplayValue());
 	}
 
 	[TestMethod]
@@ -152,8 +150,7 @@
 		GetButton("equals").Click();
 		buttonOne.Click();
 		
-		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
-		Assert.AreEqual("1", displayValue);
+		Assert.AreEqual("1", GetDisplayValue());
 	}
 
 	[TestMethod]
@@ -171,7 +168,6 @@
 		GetButton("three").Click();
 		equalsButton.Click();
 		
-		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
-		Assert.AreEqual("6", displayValue);
+		Assert.AreEqual("6", GetDisplayValue());
 	}
 }
