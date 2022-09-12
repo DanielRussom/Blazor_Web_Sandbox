@@ -142,4 +142,20 @@
 		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
 		Assert.AreEqual("1", displayValue);
 	}
+
+	[TestMethod]
+	public void Continue_plus_equation_when_plus_is_clicked_following_equals_command()
+	{
+		UnderTest.Find($"button#one").Click();
+		UnderTest.Find($"button#plus").Click();
+		UnderTest.Find($"button#two").Click();
+		UnderTest.Find($"button#equals").Click();
+
+		UnderTest.Find($"button#plus").Click();
+		UnderTest.Find($"button#three").Click();
+		UnderTest.Find($"button#equals").Click();
+		
+		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
+		Assert.AreEqual("6", displayValue);
+	}
 }

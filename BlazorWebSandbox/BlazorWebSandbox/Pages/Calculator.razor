@@ -39,7 +39,11 @@
 
     private void PlusCommand()
     {
-        storedValue += displayValue;
+        if (!wasEqualsTheLastCommand)
+        {
+            storedValue += displayValue;
+        }
+
         displayValue = 0;
     }
 
