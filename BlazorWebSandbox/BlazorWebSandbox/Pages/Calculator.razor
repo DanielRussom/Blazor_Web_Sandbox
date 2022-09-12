@@ -6,6 +6,7 @@
 <p id="displayValue">@displayValue.ToString()</p>
 
 <button id="one" @onclick="@(()=>SelectNumber(1))">1</button>
+
 <button id="two" @onclick="@(()=>SelectNumber(2))">2</button>
 <button id="three" @onclick="@(()=>SelectNumber(3))">3</button>
 <button id="four" @onclick="@(()=>SelectNumber(4))">4</button>
@@ -24,13 +25,13 @@
 @code {
     private int displayValue = 0;
     private int storedValue = 0;
-    private bool wasEqualsTheLastCommand = false;
+    private bool equalsWasTheLastCommand = false;
 
     private void SelectNumber(int number)
     {
-        if(wasEqualsTheLastCommand || displayValue.Equals(0)){
+        if(equalsWasTheLastCommand || displayValue.Equals(0)){
             displayValue = number;
-            wasEqualsTheLastCommand = false;
+            equalsWasTheLastCommand = false;
             return;
         }
 
@@ -39,30 +40,26 @@
 
     private void PlusCommand()
     {
-        if (!wasEqualsTheLastCommand)
+        if (equalsWasTheLastCommand)
         {
-            storedValue += displayValue;
-        }
-        else
-        {
-            storedValue = displayValue;
+            storedValue = 0;
         }
 
-
+        storedValue += displayValue;
         displayValue = 0;
     }
 
     private void EqualsCommand()
     {
-        if (!wasEqualsTheLastCommand)
+        if (equalsWasTheLastCommand)
         {
-            var tempValue = displayValue;
             displayValue += storedValue;
-            storedValue = tempValue;
-            wasEqualsTheLastCommand = true;
             return;
         }
-
+     
+        var lastAddedValue = displayValue;
         displayValue += storedValue;
+        storedValue = lastAddedValue;
+        equalsWasTheLastCommand = true;
     }
 }
