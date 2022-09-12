@@ -102,7 +102,6 @@
 		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
 		Assert.AreEqual("1", displayValue);
 	}
-	
 
 	[TestMethod]
 	public void Display_the_result_of_one_plus_one()
@@ -114,5 +113,19 @@
 		
 		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
 		Assert.AreEqual("2", displayValue);
+	}
+
+	[TestMethod]
+	public void Display_the_result_of_one_plus_two_plus_three()
+	{
+		UnderTest.Find($"button#one").Click();
+		UnderTest.Find($"button#plus").Click();
+		UnderTest.Find($"button#two").Click();
+		UnderTest.Find($"button#plus").Click();
+		UnderTest.Find($"button#three").Click();
+		UnderTest.Find($"button#equals").Click();
+		
+		var displayValue = UnderTest.Find("p#displayValue").InnerHtml;
+		Assert.AreEqual("6", displayValue);
 	}
 }
