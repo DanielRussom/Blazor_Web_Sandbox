@@ -40,9 +40,12 @@
 
 		Assert.AreEqual(expected, buttonValue);
 	}
-
+	
+    [TestMethod]
 	[DataRow("plus", "+")]
 	[DataRow("equals", "=")]
+	[DataRow("minus", "-")]
+	[DataRow("clear", "C")]
 	public void Show_a_button_for_expected_command(string elementId, string expected)
 	{
 		var buttonValue = UnderTest.Find($"button#{elementId}").InnerHtml;
