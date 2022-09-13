@@ -4,7 +4,7 @@
 @inherits BunitTestContext
 
 @code {
-	IRenderedFragment UnderTest;
+	IRenderedFragment UnderTest = null!;
 
 	[TestInitialize]
 	public void Initialize()
@@ -148,6 +148,7 @@
 
 		Assert.AreEqual("6", GetDisplayValue());
 	}
+
 
 	[TestMethod]
 	public void Display_one_when_one_is_clicked_after_the_equals_command()
