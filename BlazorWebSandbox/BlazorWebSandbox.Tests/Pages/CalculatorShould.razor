@@ -55,6 +55,7 @@
 	[DataRow("equals", "=")]
 	[DataRow("minus", "-")]
 	[DataRow("clear", "C")]
+	[DataRow("multiply", "X")]
 	public void Show_a_button_for_expected_command(string elementId, string expected)
 	{
 		var buttonValue = GetButton(elementId).InnerHtml;

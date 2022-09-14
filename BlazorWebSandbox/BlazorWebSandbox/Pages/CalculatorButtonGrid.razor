@@ -1,5 +1,10 @@
 <div class="container"> 
     <div class="row">
+        <button class="col-sm-4" id="clear">C</button>
+        <button class="col-sm-4" id="zero" @onclick="@(()=>SelectNumber(0))">0</button>
+        <button class="col-sm-4" id="equals" @onclick="EqualsCommand">=</button>
+    </div>
+    <div class="row">
         <button class="col-sm-4" id="one" @onclick="@(()=>SelectNumber(1))">1</button>
         <button class="col-sm-4" id="two" @onclick="@(()=>SelectNumber(2))">2</button>
         <button class="col-sm-4" id="three" @onclick="@(()=>SelectNumber(3))">3</button>
@@ -10,14 +15,14 @@
         <button class="col-sm-4" id="six" @onclick="@(()=>SelectNumber(6))">6</button>
     </div>
     <div class="row">
-        <button class="col-sm-3" id="seven" @onclick="@(()=>SelectNumber(7))">7</button>
-        <button class="col-sm-3" id="eight" @onclick="@(()=>SelectNumber(8))">8</button>
-        <button class="col-sm-3" id="nine" @onclick="@(()=>SelectNumber(9))">9</button>
-        <button class="col-sm-3" id="zero" @onclick="@(()=>SelectNumber(0))">0</button>
-        <button class="col-sm-3" id="plus" @onclick="PlusCommand">+</button>
-        <button class="col-sm-3" id="minus">-</button>
-        <button class="col-sm-3" id="equals" @onclick="EqualsCommand">=</button>
-        <button class="col-sm-3" id="clear">C</button>
+        <button class="col-sm-4" id="seven" @onclick="@(()=>SelectNumber(7))">7</button>
+        <button class="col-sm-4" id="eight" @onclick="@(()=>SelectNumber(8))">8</button>
+        <button class="col-sm-4" id="nine" @onclick="@(()=>SelectNumber(9))">9</button>
+    </div>
+    <div class="row">
+        <button class="col-sm-4" id="plus" @onclick="PlusCommand">+</button>
+        <button class="col-sm-4" id="minus">-</button>
+        <button class="col-sm-4" id="multiply">X</button>
     </div>
 </div>
 
