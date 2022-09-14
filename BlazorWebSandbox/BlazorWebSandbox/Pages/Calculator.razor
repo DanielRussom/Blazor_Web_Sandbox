@@ -1,82 +1,12 @@
 @page "/calculator"
 @inject HttpClient Http
-<style>
-.grid-container {
-  display: grid;
-  grid-template-columns: max-content max-content max-content;
-}
-.grid-item {
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  text-align: center;
-  margin:2px;
-}
-</style>
 
 <h1>Calculator</h1>
 
-<CalculatorDisplay DisplayValue=@displayValue/>
+<CalculatorDisplay DisplayValue=@DisplayValue/>
 
-<div class="container"> 
-    <div class="row">
-        <button class="col-sm-4" id="one" @onclick="@(()=>SelectNumber(1))">1</button>
-        <button class="col-sm-4" id="two" @onclick="@(()=>SelectNumber(2))">2</button>
-        <button class="col-sm-4" id="three" @onclick="@(()=>SelectNumber(3))">3</button>
-    </div>
-    <div class="row">
-        <button class="col-sm-4" id="four" @onclick="@(()=>SelectNumber(4))">4</button>
-        <button class="col-sm-4" id="five" @onclick="@(()=>SelectNumber(5))">5</button>
-        <button class="col-sm-4" id="six" @onclick="@(()=>SelectNumber(6))">6</button>
-    </div>
-    <div class="row">
-        <button class="col-sm-3" id="seven" @onclick="@(()=>SelectNumber(7))">7</button>
-        <button class="col-sm-3" id="eight" @onclick="@(()=>SelectNumber(8))">8</button>
-        <button class="col-sm-3" id="nine" @onclick="@(()=>SelectNumber(9))">9</button>
-        <button class="col-sm-3" id="zero" @onclick="@(()=>SelectNumber(0))">0</button>
-        <button class="col-sm-3" id="plus" @onclick="PlusCommand">+</button>
-        <button class="col-sm-3" id="minus">-</button>
-        <button class="col-sm-3" id="equals" @onclick="EqualsCommand">=</button>
-        <button class="col-sm-3" id="clear">C</button>
-    </div>
-</div>
+<CalculatorButtonGrid @bind-DisplayValue="DisplayValue"/>
 
 @code {
-    private int displayValue = 0;
-    private int storedValue = 0;
-    private bool equalsWasTheLastCommand = false;
-
-    private void SelectNumber(int number)
-    {
-        if(equalsWasTheLastCommand || displayValue.Equals(0)){
-            displayValue = number;
-            equalsWasTheLastCommand = false;
-            return;
-        }
-
-        displayValue = int.Parse($"{displayValue}{number}");
-    }
-
-    private void PlusCommand()
-    {
-        if (equalsWasTheLastCommand)
-        {
-            storedValue = 0;
-        }
-
-        storedValue += displayValue;
-        displayValue = 0;
-    }
-
-    private void EqualsCommand()
-    {
-        if (equalsWasTheLastCommand)
-        {
-            displayValue += storedValue;
-            return;
-        }
-     
-        var lastAddedValue = displayValue;
-        displayValue += storedValue;
-        storedValue = lastAddedValue;
-        equalsWasTheLastCommand = true;
-    }
+    public int DisplayValue { get; set; }
 }

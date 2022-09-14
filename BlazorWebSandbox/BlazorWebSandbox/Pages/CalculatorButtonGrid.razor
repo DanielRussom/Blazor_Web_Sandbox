@@ -1,0 +1,80 @@
+<div class="container"> 
+    <div class="row">
+        <button class="col-sm-4" id="one" @onclick="@(()=>SelectNumber(1))">1</button>
+        <button class="col-sm-4" id="two" @onclick="@(()=>SelectNumber(2))">2</button>
+        <button class="col-sm-4" id="three" @onclick="@(()=>SelectNumber(3))">3</button>
+    </div>
+    <div class="row">
+        <button class="col-sm-4" id="four" @onclick="@(()=>SelectNumber(4))">4</button>
+        <button class="col-sm-4" id="five" @onclick="@(()=>SelectNumber(5))">5</button>
+        <button class="col-sm-4" id="six" @onclick="@(()=>SelectNumber(6))">6</button>
+    </div>
+    <div class="row">
+        <button class="col-sm-3" id="seven" @onclick="@(()=>SelectNumber(7))">7</button>
+        <button class="col-sm-3" id="eight" @onclick="@(()=>SelectNumber(8))">8</button>
+        <button class="col-sm-3" id="nine" @onclick="@(()=>SelectNumber(9))">9</button>
+        <button class="col-sm-3" id="zero" @onclick="@(()=>SelectNumber(0))">0</button>
+        <button class="col-sm-3" id="plus" @onclick="PlusCommand">+</button>
+        <button class="col-sm-3" id="minus">-</button>
+        <button class="col-sm-3" id="equals" @onclick="EqualsCommand">=</button>
+        <button class="col-sm-3" id="clear">C</button>
+    </div>
+</div>
+
+@code {
+    private int displayValue;
+
+    [Parameter]
+    public int DisplayValue
+    {
+        get => displayValue;
+        set
+        {
+            if (displayValue == value ) return;
+            displayValue = value;
+            DisplayValueChanged.InvokeAsync(value);
+        }
+    }
+
+    [Parameter]
+    public EventCallback<int> DisplayValueChanged { get; set; }
+
+    private int storedValue = 0;
+    private bool equalsWasTheLastCommand = false;
+
+    private void SelectNumber(int number)
+    {
+        if(equalsWasTheLastCommand || DisplayValue.Equals(0)){
+            DisplayValue = number;
+            equalsWasTheLastCommand = false;
+            return;
+        }
+
+        DisplayValue = int.Parse($"{DisplayValue}{number}");
+    }
+
+    private void PlusCommand()
+    {
+        if (equalsWasTheLastCommand)
+        {
+            storedValue = 0;
+        }
+
+        storedValue += DisplayValue;
+        DisplayValue = 0;
+    }
+
+    private void EqualsCommand()
+    {
+        if (equalsWasTheLastCommand)
+        {
+            DisplayValue += storedValue;
+            return;
+        }
+     
+        var lastAddedValue = DisplayValue;
+        DisplayValue += storedValue;
+        storedValue = lastAddedValue;
+        equalsWasTheLastCommand = true;
+    }
+}
