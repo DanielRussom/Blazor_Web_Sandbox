@@ -1,8 +1,8 @@
 <div class="container"> 
     <div class="row">
-        <button class="col-sm-4" id="clear">C</button>
+        <CalculatorCommandButton OnButtonClick=@ClearCommand Value="C"/>
         <CalculatorNumberButton OnButtonClick=@SelectNumber Value=0/>
-        <button class="col-sm-4" id="equals" @onclick="EqualsCommand">=</button>
+        <CalculatorCommandButton OnButtonClick=@EqualsCommand Value="="/>
     </div>
     <div class="row">
         <CalculatorNumberButton OnButtonClick=@SelectNumber Value=1/>
@@ -20,9 +20,9 @@
         <CalculatorNumberButton OnButtonClick=@SelectNumber Value=9/>
     </div>
     <div class="row">
-        <button class="col-sm-4" id="plus" @onclick="PlusCommand">+</button>
-        <button class="col-sm-4" id="minus">-</button>
-        <button class="col-sm-4" id="multiply">X</button>
+        <CalculatorCommandButton OnButtonClick=@PlusCommand Value="+"/>
+        <CalculatorCommandButton OnButtonClick=@MinusCommand Value="-"/>
+        <CalculatorCommandButton OnButtonClick=@MultiplyCommand Value="X"/>
     </div>
 </div>
 
@@ -76,10 +76,25 @@
             DisplayValue += storedValue;
             return;
         }
-     
+
         var lastAddedValue = DisplayValue;
         DisplayValue += storedValue;
         storedValue = lastAddedValue;
         equalsWasTheLastCommand = true;
+    }
+
+    private void MinusCommand()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void MultiplyCommand()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void ClearCommand()
+    {
+        throw new NotImplementedException();
     }
 }
