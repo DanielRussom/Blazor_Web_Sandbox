@@ -1,0 +1,14 @@
+﻿<button class="col-sm-4" @onclick="@(()=>SelectNumber())">@Value</button>
+
+@code {
+    [Parameter]
+    public int Value { get; set; }
+
+    [Parameter]
+    public EventCallback<int> OnButtonClick { get; set; }
+
+    private async Task SelectNumber()
+    {
+        await OnButtonClick.InvokeAsync(Value);
+    }
+}

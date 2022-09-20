@@ -1,7 +1,7 @@
 <div class="container"> 
     <div class="row">
         <button class="col-sm-4" id="clear">C</button>
-        <button class="col-sm-4" id="zero" @onclick="@(()=>SelectNumber(0))">0</button>
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=0/>
         <button class="col-sm-4" id="equals" @onclick="EqualsCommand">=</button>
     </div>
     <div class="row">
