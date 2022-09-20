@@ -1,11 +1,6 @@
-@page "/calculator"
-@inject HttpClient Http
+﻿<CalculatorDisplay DisplayValue=@DisplayValue />
 
-<h1>Calculator</h1>
-
-<CalculatorDisplay DisplayValue=@DisplayValue/>
-
-<CalculatorButtonGrid @bind-DisplayValue="DisplayValue"/>
+<CalculatorButtonGrid @bind-DisplayValue="DisplayValue" />
 
 @code {
     public int DisplayValue { get; set; }
