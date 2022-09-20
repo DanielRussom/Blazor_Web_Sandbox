@@ -5,19 +5,19 @@
         <button class="col-sm-4" id="equals" @onclick="EqualsCommand">=</button>
     </div>
     <div class="row">
-        <button class="col-sm-4" id="one" @onclick="@(()=>SelectNumber(1))">1</button>
-        <button class="col-sm-4" id="two" @onclick="@(()=>SelectNumber(2))">2</button>
-        <button class="col-sm-4" id="three" @onclick="@(()=>SelectNumber(3))">3</button>
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=1/>
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=2/>
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=3/>
     </div>
     <div class="row">
-        <button class="col-sm-4" id="four" @onclick="@(()=>SelectNumber(4))">4</button>
-        <button class="col-sm-4" id="five" @onclick="@(()=>SelectNumber(5))">5</button>
-        <button class="col-sm-4" id="six" @onclick="@(()=>SelectNumber(6))">6</button>
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=4/>
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=5/>
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=6/>
     </div>
     <div class="row">
-        <button class="col-sm-4" id="seven" @onclick="@(()=>SelectNumber(7))">7</button>
-        <button class="col-sm-4" id="eight" @onclick="@(()=>SelectNumber(8))">8</button>
-        <button class="col-sm-4" id="nine" @onclick="@(()=>SelectNumber(9))">9</button>
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=7/>
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=8/>
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=9/>
     </div>
     <div class="row">
         <button class="col-sm-4" id="plus" @onclick="PlusCommand">+</button>
