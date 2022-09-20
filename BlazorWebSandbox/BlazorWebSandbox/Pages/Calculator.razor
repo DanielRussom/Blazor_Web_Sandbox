@@ -1,6 +1,10 @@
-﻿<CalculatorDisplay DisplayValue=@DisplayValue />
+﻿<div class="border border-dark">
 
-<CalculatorButtonGrid @bind-DisplayValue="DisplayValue" />
+    <CalculatorDisplay DisplayValue=@DisplayValue />
+
+    <CalculatorButtonGrid @bind-DisplayValue="DisplayValue" />
+
+</div>
 
 @code {
     public int DisplayValue { get; set; }

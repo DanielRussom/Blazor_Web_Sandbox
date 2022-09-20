@@ -1,0 +1,24 @@
+﻿<div class="container border border-warning col-8"> 
+    <div class="row">
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=0 />
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=1 />
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=2 />
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=3 />
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=4 />
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=5 />
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=6 />
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=7 />
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=8 />
+        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=9 />
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback<int> OnButtonClick { get; set; }
+
+    private async Task SelectNumber(int value)
+    {
+        await OnButtonClick.InvokeAsync(value);
+    }
+}

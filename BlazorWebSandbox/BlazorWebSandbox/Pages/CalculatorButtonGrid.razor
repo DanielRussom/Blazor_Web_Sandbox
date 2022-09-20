@@ -1,24 +1,14 @@
 <div class="container p-2"> 
     <div class="row">
-        <CalculatorCommandButton OnButtonClick=@ClearCommand Value="C"/>
-        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=0/>
-        <CalculatorCommandButton OnButtonClick=@EqualsCommand Value="="/>
+        <CalculatorNumberButtonGrid OnButtonClick=@SelectNumber/>
 
-        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=1/>
-        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=2/>
-        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=3/>
-
-        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=4/>
-        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=5/>
-        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=6/>
-
-        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=7/>
-        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=8/>
-        <CalculatorNumberButton OnButtonClick=@SelectNumber Value=9/>
-
-        <CalculatorCommandButton OnButtonClick=@PlusCommand Value="+"/>
-        <CalculatorCommandButton OnButtonClick=@MinusCommand Value="-"/>
-        <CalculatorCommandButton OnButtonClick=@MultiplyCommand Value="X"/>
+        <div class="col-4">
+            <CalculatorCommandButton OnButtonClick=@ClearCommand Value="C" />
+            <CalculatorCommandButton OnButtonClick=@EqualsCommand Value="=" />
+            <CalculatorCommandButton OnButtonClick=@PlusCommand Value="+" />
+            <CalculatorCommandButton OnButtonClick=@MinusCommand Value="-" />
+            <CalculatorCommandButton OnButtonClick=@MultiplyCommand Value="X" />
+        </div>
     </div>
 </div>
 
