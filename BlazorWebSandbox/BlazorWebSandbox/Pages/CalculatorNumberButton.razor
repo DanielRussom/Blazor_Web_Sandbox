@@ -1,4 +1,7 @@
-﻿<button type="button" class="btn btn-outline-secondary col-4" @onclick="@(()=>SelectNumber())">@Value</button>
+﻿<div class="col-4">
+    <button type="button" class="btn btn-outline-secondary" @onclick="@(()=>SelectNumber())">@Value</button>
+</div>
+
 
 @code {
     [Parameter]
