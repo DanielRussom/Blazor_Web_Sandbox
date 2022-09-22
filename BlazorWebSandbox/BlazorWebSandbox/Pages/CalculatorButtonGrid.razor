@@ -80,13 +80,18 @@
         if (lastOperation == "+")
         {
             DisplayValue += storedValue;
-        } 
+        }
+
+        if (lastOperation == "*")
+        {
+            DisplayValue *= storedValue;
+        }
 
         if (equalsWasTheLastCommand)
         {
             if (lastOperation == "-")
             {
-                DisplayValue = DisplayValue - storedValue;
+                DisplayValue -= storedValue;
             }
             return;
         }
@@ -115,19 +120,26 @@
             return;
         }
 
-        storedValue = storedValue - DisplayValue; 
+        storedValue -= DisplayValue; 
         DisplayValue = 0;
     }
 
     private void MultiplyCommand()
     {
-        lastOperation = "-";
+        lastOperation = "*";
         if (equalsWasTheLastCommand)
         {
             storedValue = 0;
         }
 
-        storedValue += DisplayValue;
+        if (storedValue == 0)
+        {
+            storedValue = DisplayValue;
+            DisplayValue = 0;
+            return;
+        }
+
+        storedValue *= DisplayValue;
         DisplayValue = 0;
     }
 
