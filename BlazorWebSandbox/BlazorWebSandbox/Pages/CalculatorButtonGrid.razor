@@ -108,13 +108,27 @@
             storedValue = 0;
         }
 
-        storedValue += DisplayValue;
+        if(storedValue == 0)
+        {
+            storedValue = DisplayValue;
+            DisplayValue = 0;
+            return;
+        }
+
+        storedValue = storedValue - DisplayValue; 
         DisplayValue = 0;
     }
 
     private void MultiplyCommand()
     {
-        throw new NotImplementedException();
+        lastOperation = "-";
+        if (equalsWasTheLastCommand)
+        {
+            storedValue = 0;
+        }
+
+        storedValue += DisplayValue;
+        DisplayValue = 0;
     }
 
     private void ClearCommand()
