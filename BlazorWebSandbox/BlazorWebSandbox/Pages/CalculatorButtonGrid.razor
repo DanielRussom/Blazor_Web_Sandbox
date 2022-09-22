@@ -1,14 +1,8 @@
 <div class="container p-2"> 
     <div class="row">
         <CalculatorNumberButtonGrid OnButtonClick=@SelectNumber/>
-
-        <div class="col-4">
-            <CalculatorCommandButton OnButtonClick=@ClearCommand Value="C" />
-            <CalculatorCommandButton OnButtonClick=@MultiplyCommand Value="X" />
-            <CalculatorCommandButton OnButtonClick=@MinusCommand Value="-" />
-            <CalculatorCommandButton OnButtonClick=@PlusCommand Value="+" />
-            <CalculatorCommandButton OnButtonClick=@EqualsCommand Value="=" />
-        </div>
+        
+        <CalculatorCommandButtonGrid OnButtonClick=@SelectCommand/>
     </div>
 </div>
 
@@ -42,6 +36,28 @@
         }
 
         DisplayValue = int.Parse($"{DisplayValue}{number}");
+    }
+
+    private void SelectCommand(string command)
+    {
+        switch (command)
+        {
+            case "=":
+                EqualsCommand();
+                break;
+            case "+":
+                PlusCommand();
+                break;
+            case "-":
+                MinusCommand();
+                break;
+            case "X":
+                MultiplyCommand();
+                break;
+            case "C":
+                ClearCommand();
+                break;
+        }
     }
 
     private void PlusCommand()
