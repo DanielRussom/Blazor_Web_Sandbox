@@ -1,10 +1,12 @@
-﻿<div class="border border-dark">
+﻿
+@*<div>*@
+    <div class="border border-dark">
+        <CalculatorDisplay DisplayValue=@DisplayValue />
 
-    <CalculatorDisplay DisplayValue=@DisplayValue />
+        <CalculatorButtonGrid @bind-DisplayValue="DisplayValue" />
+    </div>
+@*</div>*@
 
-    <CalculatorButtonGrid @bind-DisplayValue="DisplayValue" />
-
-</div>
 
 @code {
     public int DisplayValue { get; set; }
