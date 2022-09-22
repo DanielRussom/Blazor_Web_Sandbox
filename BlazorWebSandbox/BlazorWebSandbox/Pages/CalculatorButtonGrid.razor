@@ -26,6 +26,7 @@
 
     private int storedValue = 0;
     private bool equalsWasTheLastCommand = false;
+    private string lastOperation = string.Empty;
 
     private void SelectNumber(int number)
     {
@@ -62,6 +63,7 @@
 
     private void PlusCommand()
     {
+        lastOperation = "+";
         if (equalsWasTheLastCommand)
         {
             storedValue = 0;
@@ -73,21 +75,41 @@
 
     private void EqualsCommand()
     {
-        if (equalsWasTheLastCommand)
+        var lastAddedValue = DisplayValue;
+
+        if (lastOperation == "+")
         {
             DisplayValue += storedValue;
+        } 
+
+        if (equalsWasTheLastCommand)
+        {
+            if (lastOperation == "-")
+            {
+                DisplayValue = DisplayValue - storedValue;
+            }
             return;
         }
 
-        var lastAddedValue = DisplayValue;
-        DisplayValue += storedValue;
+        if (lastOperation == "-")
+        {
+            DisplayValue = storedValue - DisplayValue;
+        }
+
         storedValue = lastAddedValue;
         equalsWasTheLastCommand = true;
     }
 
     private void MinusCommand()
     {
-        throw new NotImplementedException();
+        lastOperation = "-";
+        if (equalsWasTheLastCommand)
+        {
+            storedValue = 0;
+        }
+
+        storedValue += DisplayValue;
+        DisplayValue = 0;
     }
 
     private void MultiplyCommand()
